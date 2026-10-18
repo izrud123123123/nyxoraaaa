@@ -5,13 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.registry.entry.RegistryEntry;
 
-/**
- * Subtle UI feedback using vanilla sounds (no custom .ogg assets are shipped yet).
- * Plays through the UI/master channel at low volume; every call is failure-safe.
- * API NOTE (unverified on 1.21.11): PositionedSoundInstance.master(RegistryEntry, pitch, volume).
- */
 public final class UiSounds {
     public enum Cue { CLICK, TOGGLE_ON, TOGGLE_OFF, OPEN, CLOSE, CATEGORY, SLIDER_RELEASE }
 
@@ -26,11 +20,11 @@ public final class UiSounds {
         try {
             MinecraftClient mc = MinecraftClient.getInstance();
             if (mc == null || mc.getSoundManager() == null) return;
-            RegistryEntry<SoundEvent> event = switch (cue) {
+            SoundEvent event = switch (cue) {
                 case OPEN, CLOSE -> SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME;
                 case TOGGLE_ON, TOGGLE_OFF, SLIDER_RELEASE -> SoundEvents.BLOCK_COPPER_BULB_TURN_ON;
-                case CATEGORY -> SoundEvents.UI_BUTTON_CLICK;
-                default -> SoundEvents.UI_BUTTON_CLICK;
+                case CATEGORY -> SoundEvents.UI_BUTTON_CLICK.value();
+                default -> SoundEvents.UI_BUTTON_CLICK.value();
             };
             float pitch = switch (cue) {
                 case OPEN, TOGGLE_ON -> 1.5f;
