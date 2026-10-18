@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "nyxora",
+  "version": "${version}",
+  "name": "NYXORA",
+  "description": "A dark, futuristic client-side visuals mod: menu, particles, kill effects, UI sounds, profiles.",
+  "authors": ["NYXORA"],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.nyxora.client.NyxoraClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
